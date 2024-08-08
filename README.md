@@ -1,7 +1,7 @@
 # myPageNode
-Pagina web creada a partir de Node.js y express
+Pagina web creada a partir de Node.js, express y motor de plantillas pug.
 
-
+```plain
 project/
 │
 ├── controllers/
@@ -14,7 +14,10 @@ project/
 │   └── userRoutes.js
 │
 ├── views/
-│   └── index.ejs
+│   └── index.pug
+|       updateUser.pug
+|       userDetail.pug
+|       users.pug
 │
 ├── public/
 │   ├── css/
@@ -23,3 +26,4 @@ project/
 │
 ├── app.js
 └── package.json
+```

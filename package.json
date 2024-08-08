@@ -3,12 +3,13 @@
   "version": "1.0.0",
   "description": "Una pagina web creada a partir de express.js",
   "main": "index.js",
+  "type": "module",
   "directories": {
     "test": "test"
   },
   "scripts": {
-    "start": "babel-node index.js",
-    "dev": "nodemon index.js --exec babel-node",
+    "start": "node index.js",
+    "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Antorrg",
@@ -16,10 +17,10 @@
   "dependencies": {
     "body-parser": "^1.20.2",
     "dotenv": "^16.4.5",
-    "ejs": "^3.1.10",
     "express": "^4.19.2",
     "helmet": "^7.1.0",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "pug": "^3.0.3"
   },
   "devDependencies": {
     "@babel/core": "^7.24.5",

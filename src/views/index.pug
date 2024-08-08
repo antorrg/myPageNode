@@ -1,0 +1,22 @@
+doctype html
+html(lang="es")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Home
+    link(rel="stylesheet", href="/css/style.css")
+  body 
+    h1 Bienvenido a la pagina de pruebas de pug y express!!! 
+    img.frontImg(src='/images/captura.png' alt='captura pantalla codigo')
+    p En este lugar estamos desarrollando una pagina con pug y express con MVC.
+    a(href='/users') Pase a ls siguiente seccion
+    hr.hr
+    h1 Segunda seccion: 
+    strong En esta sección encontramos algo mas de lo mismo.
+    h1 Mira este video
+    iframe(width="560" height="315" src="https://www.youtube.com/embed/oRH5lH7F7TY" 
+           title="YouTube video player" frameborder="0" 
+           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+           allowfullscreen)
+    h2 Esto es todo por el momento, pero se puede hacer mucho mas... Espero seguir aprendiendo.
+    script(type="module" src="/js/indexFunctions.js")

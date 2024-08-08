@@ -1,6 +1,6 @@
 
-import app from './src/app'
-import s from './src/envConfig'
+import app from './src/app.js'
+import s from './src/envConfig.js'
 
 
 app.listen(s.Port, () => {

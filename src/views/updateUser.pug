@@ -1,0 +1,53 @@
+doctype html
+html(lang="es")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Home
+    link(rel="stylesheet", href="/css/style.css")
+  body 
+    .container
+      form.formContainer#editUserForm(method='POST' action=`/user/edit/${user.id}`)
+        h1 Edite sus datos:
+        label(for='email') Email:
+        input#email(name='email', type='email', value=user.email)
+  
+        label(for='name') Name:
+        input#name(name='name', type='text', value=user.name)
+
+        label(for='password') Password:
+        input#password(name='password', type='password', placeholder='Enter new password')
+
+        label(for='country') Country:
+        input#country(name='country', type='text', value=user.country)
+        button(type='submit') Update
+  script.
+    document.getElementById('editUserForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+    
+        const userId = '#{user.id}';
+        const email = document.getElementById('email').value;
+        const name = document.getElementById('name').value;
+        const password = document.getElementById('password').value;
+        const country = document.getElementById('country').value;
+
+          try {
+        const response = await fetch(`/api/user/${userId}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email, name, password, country })
+        });
+
+         if (response.ok) {
+          // Redirigir o mostrar un mensaje de éxito
+          window.location.href = '/users';
+         } else {
+          const errorData = await response.json();
+          console.error('Error:', errorData);
+          }
+          } catch (error) {
+            console.error('Error:', error);
+          }
+        });

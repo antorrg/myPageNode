@@ -1,0 +1,28 @@
+doctype html
+html(lang="es")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Usuarios 
+    link(rel="stylesheet", href="/css/style.css")
+  body 
+    .container
+      h1 Usuario:
+      .detail
+      .keyValue
+        strong Id: 
+        p= user.id
+      .keyValue
+        strong Name: 
+        p= user.name 
+      .keyValue
+        strong Email: 
+        p= user.email 
+      .keyValue
+        strong Pais: 
+        p= user.country 
+      .divButtons
+        a.linkButton(href=`/users/update/${user.id}`) Editar:
+        a.linkButton(href='/users') Volver:
+
+      

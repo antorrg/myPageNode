@@ -1,4 +1,4 @@
-import {usuarios}from '../models/user.js'
+import {usuarios}from '../models/pepito.js'
 import serv from '../services/userServices.js'
 
 export default  {

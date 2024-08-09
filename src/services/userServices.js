@@ -1,4 +1,4 @@
-import {usuarios} from '../models/user.js'
+import {usuarios} from '../models/pepito.js'
 
 export default {
     create : (name, email, password, country)=>{

@@ -1,12 +1,7 @@
-doctype html
-html(lang="es")
-  head
-    meta(charset="UTF-8")
-    meta(name="viewport", content="width=device-width, initial-scale=1.0")
-    title Usuarios 
-    link(rel="stylesheet", href="/css/style.css")
-  body 
-    .container
+extends ./layouts/usersLayout.pug
+
+block content
+  .container
       h1 Usuario:
       .detail
       .keyValue
@@ -17,12 +12,18 @@ html(lang="es")
         p= user.name 
       .keyValue
         strong Email: 
-        p= user.email 
+        p= user.email  
+      img.image(src= user.image) 
+      .keyValue
+        strong Rol:  
+        p= user.role
       .keyValue
         strong Pais: 
         p= user.country 
       .divButtons
         a.linkButton(href=`/users/update/${user.id}`) Editar:
         a.linkButton(href='/users') Volver:
+ 
+    
 
       

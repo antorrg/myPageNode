@@ -1,40 +1,41 @@
 import {usuarios}from '../models/pepito.js'
 import serv from '../services/userServices.js'
+import * as eh from '../utils/errorHandlers.js'
 
 export default  {
   home: (req, res)=>{
     res.render('index')
   },
-  getAllUsers: (req, res) => {
-    const users = usuarios;
+  getAllUsers: eh.catchErrorMVC(async(req, res) => {
+    const users = await serv.getUsers()
     res.render('users', {users});
-  },
-  getUserById : async(req, res)=>{
+  }),
+  getUserById : eh.catchErrorMVC(async(req, res)=>{
     const {id} = req.params;
     const user = await serv.getById(id)
     //console.log('yo soy el user del controller: ',user)
     res.render('userDetail', {user})
-  },
-  createUser: (req, res) => {
+  }),
+  createUser: eh.catchErrorMVC((req, res) => {
     const { name, email, password, country  } = req.body;
-    console.log('controller body: ',req.body)
+    //console.log('controller body: ',req.body)
     serv.create( name, email, password, country );
     res.redirect('/users');
-  },
-  getUserUpd : (req, res)=>{
+  }),
+  getUserUpd : eh.catchErrorMVC(async(req, res)=>{
     const {id} = req.params;
-    const user = serv.getById(id)
-    console.log('yo soy el user del controller: ',user)
+    const user = await serv.getById(id)
+    //console.log('yo soy el user del controller: ',user)
     res.render('updateUser', {user})
-  },
-  updateUser : (req, res)=>{
+  }),
+  updateUser : eh.catchErrorREST(async(req, res)=>{
     const {id}= req.params;
     const newUser= req.body;
     try{
-    const response = serv.updaterUser(id, newUser)
+    const response = await serv.updaterUser(id, newUser)
     res.status(200).json(response)
     }catch(error){
       res.status(500).json({error: error.message})
     }
-  },
+  }),
 };

@@ -1,19 +1,57 @@
 body{
     background-color: azure;
     color:darkolivegreen;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    display: grid;
+    grid-template-rows: 4rem 1fr auto; /* La primera fila ocupa el espacio restante, la segunda es el footer */
+    grid-template-columns: 1fr; /* Una columna que ocupe todo el ancho disponible */
+    justify-items: center;
+    min-height: 100vh;
+    margin: 0;
 
 }
+.navbar{
+  width:100vw;
+  height: 4rem;
+  margin-top:0;
+  margin-left: 0;
+  background-color: #444;
+  color: rgb(242, 247, 234);
+  display:flex;
+  flex-direction: row;
+  align-items:center;
+  justify-content:start;
+  /* grid-column: 1 / -1;  */
+}
+.navStrong {
+  margin:1rem;
+}
+.aNav {
+  margin:1rem;
+  color:aliceblue;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: large;
+}
+.footer{
+  width:100vw;
+  height: 4rem;
+  margin-bottom: none;
+  background-color: #444;
+  color: rgb(242, 247, 234);
+  grid-column: 1 / -1; 
+}
+.footH {
+  margin:1rem;
+}
 hr {
-  border: none;            /* Elimina el estilo de borde predeterminado */
+  border: solid;  
+  width: 100vw;          /* Elimina el estilo de borde predeterminado */
   height: 2px;             /* Establece la altura de la línea */
   background-color: #333;  /* Establece el color de la línea */
   margin: 20px 0;          /* Agrega margen arriba y abajo para separación */
 }
 .users {
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-family: 'Arial', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', 'sans-serif', 'Trebuchet MS', ;
     font-size: medium;
     font-weight: 100;
     display: flex;
@@ -84,17 +122,17 @@ hr {
     gap: 0.5rem;
 }
 .container {
+  display:flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  align-content: flex-start;
     background-color: rgb(255, 255, 255);
     max-width: fit-content;
     border: solid grey 1px;
     border-radius: 1rem;
     margin: 1rem;
     padding: 2rem;
-    display:flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    align-content: flex-start;
 }
 .divButtons{
   display:flex;
@@ -115,4 +153,8 @@ hr {
 .linkButton:active {
   transform: scale(0.95); 
   border-radius: 0.5rem;
+}
+.image {
+  max-width: 30rem;
+  max-height: 30rem;
 }

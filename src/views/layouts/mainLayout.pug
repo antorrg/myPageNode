@@ -1,0 +1,19 @@
+doctype html
+html(lang="es")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Home
+    link(rel="stylesheet", href="/css/style.css")
+    link(rel="icon" type="image/png" href="/images/favicon.png") 
+  body 
+    navbar.navbar 
+      strong.navStrong Express y Pug
+      a.aNav(href='/users') Users:
+    block content 
+
+  footer.footer 
+    h3.footH Creada por: 
+      strong Chambonated.inc
+
+  script(type="module" src="/js/indexFunctions.js")

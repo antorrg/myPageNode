@@ -1,12 +1,7 @@
-doctype html
-html(lang="es")
-  head
-    meta(charset="UTF-8")
-    meta(name="viewport", content="width=device-width, initial-scale=1.0")
-    title Home
-    link(rel="stylesheet", href="/css/style.css")
-  body 
-    .container
+extends ./layouts/usersLayout.pug
+
+block content
+  .container
       form.formContainer#editUserForm(method='POST' action=`/user/edit/${user.id}`)
         h1 Edite sus datos:
         label(for='email') Email:
@@ -15,39 +10,130 @@ html(lang="es")
         label(for='name') Name:
         input#name(name='name', type='text', value=user.name)
 
-        label(for='password') Password:
-        input#password(name='password', type='password', placeholder='Enter new password')
+        label(for='role') Permisos:
+        input#role(name='role', type='text', placeholder=user.role)
 
         label(for='country') Country:
         input#country(name='country', type='text', value=user.country)
-        button(type='submit') Update
-  script.
-    document.getElementById('editUserForm').addEventListener('submit', async function(e) {
-      e.preventDefault();
-    
-        const userId = '#{user.id}';
-        const email = document.getElementById('email').value;
-        const name = document.getElementById('name').value;
-        const password = document.getElementById('password').value;
-        const country = document.getElementById('country').value;
 
-          try {
-        const response = await fetch(`/api/user/${userId}`, {
+        button.linkButton(type='button', id='submitBtn') Update
+      a.linkButton(href='/users') Cancelar
+        // Modal de confirmación
+  .totalModalCont.hidden#confirmationModal
+      .modalContent
+        h2 ¿Estás seguro de que deseas actualizar el usuario?
+        .divButtons
+          button.linkButton#confirmSubmit(type='button') Confirmar
+          button.linkButton#cancelSubmit(type='button') Cancelar
+
+       
+  script.
+    document.getElementById('submitBtn').addEventListener('click', function(e) {
+    e.preventDefault();
+    document.getElementById('confirmationModal').classList.remove('hidden');
+    });
+
+    document.getElementById('confirmSubmit').addEventListener('click', async function() {
+       document.getElementById('confirmationModal').classList.add('hidden'); // Oculta el modal inmediatamente
+
+    const userId = '#{user.id}';
+    const email = document.getElementById('email').value;
+    const name = document.getElementById('name').value;
+    const role = document.getElementById('role').value;
+    const country = document.getElementById('country').value;
+
+    try {
+      const response = await fetch(`/api/user/${userId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ email, name, password, country })
-        });
+        body: JSON.stringify({ email, name, role, country })
+      });
 
-         if (response.ok) {
-          // Redirigir o mostrar un mensaje de éxito
+      if (response.ok) {
+        document.querySelector('.container').innerHTML = `
+          <div class='modalContainer'>
+            <div class='modalSuccess'>
+              <h1>¡Usuario actualizado exitosamente!</h1>
+              <h2>Será redirigido a users</h2>
+            </div>
+          </div>
+        `;
+        setTimeout(() => {
           window.location.href = '/users';
-         } else {
-          const errorData = await response.json();
-          console.error('Error:', errorData);
-          }
-          } catch (error) {
-            console.error('Error:', error);
-          }
-        });
+        }, 2000);
+      } else {
+        const errorData = await response.json();
+        document.querySelector('.container').innerHTML = `
+          <div class='modalContainer'>
+            <div class='modalFailed'>
+              <h1>¡Error al actualizar el usuario!</h1>
+              <h2>${errorData.message || 'Intente nuevamente más tarde.'}</h2>
+            </div>
+          </div>
+        `;
+      }
+    } catch (error) {
+      document.querySelector('.container').innerHTML = `
+        <div class='modalContainer'>
+          <div class='modalFailed'>
+            <h1>¡Error al actualizar el usuario!</h1>
+            <h2>${error.message || 'Intente nuevamente más tarde.'}</h2>
+          </div>
+        </div>
+      `;
+      console.error('Error:', error);
+    }
+    });
+
+    document.getElementById('cancelSubmit').addEventListener('click', function() {
+    document.getElementById('confirmationModal').classList.add('hidden');
+    });
+   
+
+
+ 
+
+
+
+//-  document.getElementById('editUserForm').addEventListener('submit', async function(e) {
+//-       e.preventDefault();
+    
+//-         const userId = '#{user.id}';
+//-         const email = document.getElementById('email').value;
+//-         const name = document.getElementById('name').value;
+//-         const role = document.getElementById('role').value;
+//-         const country = document.getElementById('country').value;
+
+//-           try {
+//-         const response = await fetch(`/api/user/${userId}`, {
+//-         method: 'PUT',
+//-         headers: {
+//-           'Content-Type': 'application/json'
+//-         },
+//-         body: JSON.stringify({ email, name, role, country })
+//-         });
+
+//-          if (response.ok) {
+//-           // Redirigir o mostrar un mensaje de éxito
+//-            document.querySelector('.container').innerHTML = `
+//-           <div class='modalContainer'>
+//-           <div class='modalSuccess'>
+//-           <h1>Usuario actualizado exitosamente!!</h1>
+//-           <h2>Será redirigido a users</h2>
+//-           </div>
+//-           </div>
+//-         `;
+//-         setTimeout(()=>{
+//-           window.location.href = '/users';
+//-         },20000)
+        
+//-          } else {
+//-           const errorData = await response.json();
+//-           console.error('Error:', errorData);
+//-           }
+//-           } catch (error) {
+//-             console.error('Error:', error);
+//-           }
+//-         });

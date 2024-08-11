@@ -9,7 +9,8 @@ export default (sequelize)=>{
         nickname:{type: DataTypes.STRING, allowNull: true},
         name: { type: DataTypes.STRING, allowNull: true },
         image: { type: DataTypes.STRING, allowNull: true,},
-        role:{type: DataTypes.SMALLINT, allowNull: false, defaultValue: 1,
+        role:{type: DataTypes.SMALLINT, allowNull: false, 
+            //defaultValue: 1,
             validate: {
               isIn: [[0, 1, 2, 9]], // Por ejemplo, 0: admin, 1: user, 2: moderator, 9:superUser
             },

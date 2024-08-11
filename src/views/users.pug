@@ -1,24 +1,19 @@
-doctype html
-html(lang="es")
-  head
-    meta(charset="UTF-8")
-    meta(name="viewport", content="width=device-width, initial-scale=1.0")
-    title Usuarios 
-    link(rel="stylesheet", href="/css/style.css")
-  body
-    .container 
+extends ./layouts/usersLayout.pug
+
+block content
+  .container 
       h1 Usuarios
       .users  
         ul
           each user in users
             li
-              a(href=`/users/${user.id}`)= user.name
-    form.formContainer(action="/users/create" method="POST")
+              a(href=`/users/${user.id}`)= user.nickname
+  form.formContainer(action="/users/create" method="POST")
       strong Nuevo Usuario:
       input(type="text" name="name" placeholder="Nombre" required)
       input(type="email" name="email" placeholder="Email" required)
       input(type="password" name="password" placeholder="password" required)
       input(type="text" name="country" placeholder="Pais" required)
       button(type='submit' id="submitButton" disabled) Agregar usuario
-    a(href='/') Volver:
-    script(type="module" src="/js/indexFunctions.js")
+  a(href='/') Volver:
+  script(type="module" src="/js/indexFunctions.js")

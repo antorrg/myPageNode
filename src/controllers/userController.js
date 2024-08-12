@@ -16,11 +16,11 @@ export default  {
     //console.log('yo soy el user del controller: ',user)
     res.render('userDetail', {user})
   }),
-  createUser: eh.catchErrorMVC((req, res) => {
+  createUser: eh.catchErrorMVC(async(req, res) => {
     const { name, email, password, country  } = req.body;
     //console.log('controller body: ',req.body)
-    serv.create( name, email, password, country );
-    res.redirect('/users');
+    await serv.create( name, email, password, country );
+    res.status(201).redirect('/users');
   }),
   getUserUpd : eh.catchErrorMVC(async(req, res)=>{
     const {id} = req.params;
@@ -35,7 +35,7 @@ export default  {
     const response = await serv.updaterUser(id, newUser)
     res.status(200).json(response)
     }catch(error){
-      res.status(500).json({error: error.message})
+    res.status(error.status || 500).json({error: error.message})
     }
   }),
 };

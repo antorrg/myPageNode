@@ -1,60 +1,35 @@
 # myPageNode
 
 Pagina web creada a partir de Node.js, express y motor de plantillas pug. Este es el diagrama general del proyecto:
-
-```plain
- MyPageNode
-│
-├──data/
-├──src/
-│  ├── controllers/
-│  │   └── userController.js
-│  │       
-│  ├── models/
-│  │   └── user.js
-│  │   └── index.js
-│  │
-│  ├── routes/
-│  │   └── apiRoutes.js (experimental)
-│  │   └── index.js
-│  │   └── userRouter.js
-│  │
-│  ├── services/
-│  │   └── helpers.js 
-│  │   └── userServices.js
-│  │
-│  ├── utils/
-│  │   └── errorsHandlers.js 
-│  │   └── userServices.j
-│  │
-│  ├── views/
-│  │   │ └──layouts/
-│  │   │       └──mainLayout.pug
-│  │   │       └──usersLayout.pug
-│  │   │
-│  │   └── index.pug
-│  │   └── updateUser.pug
-│  │   └── userDetail.pug
-│  │   └── users.pug
-│  │
-│  ├── public/
-│  │   ├── css/
-│  │   │     └── modal.css
-│  │   │     └── style.css
-│  │   ├── js/
-│  │   │   └── indexFunctions.js
-│  │   └── images/
-│  │
-│  ├── envConfig.js
-│  ├── db.js
-│  └── app.js
-│
-├──test/
-├── .babelrc
-├──  index.js
-└── package.json
-```
+[Diagrama App:](./data/diagramaApp.md)
 
 ## Sobre la api: 
 
 La api modelo `MVC` está construida con las siguientes tecnologias:
+
+- Express.js
+- bodyParser
+- Morgan
+- Helmet
+- Dotenv
+- Pug
+- sequelize
+- Sqlite3
+
+## Inicializacion del proyecto:
+
+Para incialiazar el proyecto es necesario clonar el repositorio y en el directorio raíz (adonde esta el `package.json`) correr el comando:
+
+```bash
+>> npm install
+```
+Seria conveniente crear un archivo `.env` copia del archivo `.env.example` pero con variables que se ajusten a nuestra conveniencia. 
+
+Luego:
+
+```bash
+>> npm run dev
+```
+Para incializar el servidor en modo de desarrollo. 
+ 
+Aparecerá en la consola la url a la que debemos hacer click + control para que nos dirija al navegador adonde podremos ver la UI del proyecto e interactuar con esta.

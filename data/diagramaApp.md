@@ -28,7 +28,7 @@ Este es el diagrama general del proyecto:
 │  │
 │  ├── utils/
 │  │   └── errorsHandlers.js 
-│  │   └── userServices.j
+│  │ 
 │  │
 │  ├── views/
 │  │   │ └──layouts/

@@ -4,6 +4,8 @@ import userController from '../controllers/userController.js';
 const apiRouter = express.Router()
 //Esta es una ruta de actualizacion por lo
 apiRouter.put('/user/:id', userController.updateUser)
+apiRouter.post('/user/login', userController.login)
+
 
 apiRouter.get('/userMock', async(req,res)=>{
     try {

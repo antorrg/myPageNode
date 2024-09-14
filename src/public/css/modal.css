@@ -4,7 +4,6 @@
     padding:1rem;
     margin: 2rem;
     font-size: medium;
-    border: solid grey 1px;
     border-radius: 0.5rem;
     display: flex;
     flex-flow: column wrap;
@@ -21,7 +20,7 @@
     padding:1rem;
     margin: 2rem;
     font-size: medium;
-    border: solid rgb(36, 133, 36) 2px;
+    /* border: solid rgb(36, 133, 36) 2px; */
     border-radius: 0.5rem;
     display: flex;
     flex-flow: column wrap;
@@ -39,7 +38,7 @@
     padding:1rem;
     margin: 2rem;
     font-size: medium;
-    border: solid rgb(162, 21, 28) 2px;
+    /* border: solid rgb(162, 21, 28) 2px; */
     border-radius: 0.5rem;
     display: flex;
     flex-flow: column wrap;

@@ -38,4 +38,10 @@ export default  {
     res.status(error.status || 500).json({error: error.message})
     }
   }),
+  login : eh.catchErrorREST(async(req, res)=>{
+    const {email, password}= req.body;
+    const response = await serv.loginUser(email, password)
+    res.status(200).json(response)
+    
+  }),
 };

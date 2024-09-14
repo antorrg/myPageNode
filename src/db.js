@@ -1,16 +1,16 @@
 import { Sequelize } from 'sequelize';
-import {fileURLToPath} from 'url'
 import path from 'path'
 import models from './models/index.js'
 //import env from './envConfig.js'
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+
+const __dirname = path.resolve();
 
 // const sequelize = new Sequelize(env.DbConnect, {
 //   logging:false,
 //   native: false,
 // })
+
 //* Configurar la base de datos SQLite en la carpeta 'database'
 const sequelize = new Sequelize({
   dialect: 'sqlite',

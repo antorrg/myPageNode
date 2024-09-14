@@ -1,5 +1,6 @@
 body{
-    background-color: azure;
+    background-color: rgb(255, 255, 255);
+    font-family: sans-serif;
     color:darkolivegreen;
     display: grid;
     grid-template-rows: 4rem 1fr auto; /* La primera fila ocupa el espacio restante, la segunda es el footer */
@@ -129,7 +130,7 @@ hr {
   align-content: flex-start;
     background-color: rgb(255, 255, 255);
     max-width: fit-content;
-    border: solid grey 1px;
+    border: solid rgb(196, 196, 196) 1px;
     border-radius: 1rem;
     margin: 1rem;
     padding: 2rem;

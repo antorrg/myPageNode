@@ -1,4 +1,3 @@
-import {usuarios} from '../models/pepito.js'
 import {User} from '../db.js'
 import bcrypt from 'bcrypt'
 import env from '../envConfig.js'
@@ -70,6 +69,18 @@ export default {
             return help.userCleaner(userUpd, true)
         } catch (error) {
             console.error('algo pasó en update:', error);
+        }
+    },
+    loginUser: async(email, password)=>{
+        try {
+            const userFound = await User.findOne({where:{email:email}})
+            if(!userFound){const error = {status:404, message:'No se encontro este usuario'}; throw error};
+            console.log(userFound)
+            const passwordMatch = await bcrypt.compare(password, userFound.password)
+            if(!passwordMatch){const error = {status:400, message:'Contraseña no valida'}; throw error}
+            return help.userCleaner(userFound, true)
+        } catch (error) {
+            throw error;
         }
     }
 }

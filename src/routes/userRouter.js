@@ -7,5 +7,7 @@ router.get('/users', userController.getAllUsers)
 router.post('/users/create',userController.createUser);
 router.get('/users/:id', userController.getUserById)
 router.get('/users/update/:id', userController.getUserUpd)
+router.get('/login')
+router.get('/logout')
 
 export default router;
